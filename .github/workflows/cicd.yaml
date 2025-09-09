@@ -6,12 +6,17 @@ on:
       - "main"
   workflow_dispatch:
 
+permissions:
+  contents: write   # 👈 allows pushing to gh-pages
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0   # 👈 fetch full history
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
